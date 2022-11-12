@@ -1,0 +1,187 @@
+* {
+  margin: 0;
+  padding: 0;
+  /* tira as margens e os preenchimentos internos */
+  box-sizing: border-box;
+  /* medida da caixa será a partir do tamanho da borda */
+}
+
+:root {
+  --card-title-border-color: #746615;
+  --card-color-primary: #f7dd43;
+  --card-bg-color: #1d1c19;
+  --bg: url(./assets/bg-yellow.svg);
+}
+
+/* root seleciona a raiz do meu CSS */
+
+body.blue {
+  --card-title-border-color: #33baf3;
+  --card-color-primary: #338af3;
+  --card-bg-color: #202024;
+  --bg: url(./assets/bg-blue.svg);
+}
+
+body.green {
+  --card-title-border-color: #047c3f;
+  --card-color-primary: #047c3f;
+  --card-bg-color: #1a1f1b;
+  --bg: url(./assets/bg-green.svg);
+}
+
+ul {
+  list-style: none; 
+  /* "none" tira os pontinhos de lista */
+}
+
+body {
+  /* background-color: #121214; */
+  /* background-image: var(--bg); */
+  /* background-position: top center ; */
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
+  background: #121214 var(--bg) no-repeat top center/cover
+}
+
+body * { /* asterisco = todos os elementos existentes dentro do body */
+  font-family: 'Roboto', sans-serif;
+}
+
+#app {
+  width: fit-content;
+  margin: auto; 
+  /* "auto" para deixar o tamanho das laterais automatizados */
+  padding-top: 52px;
+}
+
+header {
+  margin-bottom: 63px;
+  text-align: center;
+}
+
+#cards {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.card {
+  padding: 32px 23px;
+  text-align: center; 
+  /* para alinhar todos os que recebem display inline (dentro da caixa), ficando alinhados ao centro */
+
+  background: var(--card-bg-color);
+  border-bottom: 2px solid var(--card-color-primary);
+  border-radius: 6px; 
+  /* arredondamento de borda */
+}
+
+.card h2 {
+  display: flex; 
+  /* desbloqueia algumas funções, como: gap */
+  gap: 16px;
+  justify-content: center; 
+  /* centraliza 24/11 quinta */
+  align-items: center;
+
+  padding: 8px 16px;
+  border: 1px solid var(--card-title-border-color);
+  border-radius: 6px;
+
+  width: fit-content;
+  /* irá se encaixar ao conteúdo, fará a caixa 24/11 quinta ir mais à direita */
+  margin-inline: auto;
+  /* irá centralizar */
+  margin-bottom: 53px;
+
+  color: #f7dd43;
+  /* para manter o amarelo na data e dia da semana mesmo se mudar a classe do
+  body */
+}
+
+.card h2 span { /* span dentro do h2 que se localiza dentro do card */
+  color: #e1e1e6;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.card ul {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  width: 270px;
+}
+
+.card ul li {
+  display: flex; /* para desbloquear propriedades, como já visto anteriormente */
+  align-items: center;
+  justify-content: space-between;
+  /* dará espaço entre os elementos */
+}
+
+.card ul li + li { /* procurar um li que tenha anterior a ele um li */
+  padding-top: 24px;
+  border-top: 1px solid #323238;
+  /* para alinhar, fazer o que foi feito na linha 73 */
+
+}
+
+.card ul li strong {
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 125%;
+
+  color: #e1e1e6;
+}
+
+.card h2:hover,
+.card ul li strong:hover,
+.card ul li img:hover {
+  transform: scale(1.1);
+}
+
+/* dois seletores foram agrupados para receberem as mesmas informações */
+/* hover: para que seja interpretado quando passar o mouse em cima, fazendo uma transformação de escala 1.1 */
+
+.card h2,
+.card ul li strong,
+.card ul li img {
+  transition: transform 0.3s;
+}
+
+/* para tornar o hover nais suave */
+/* transform (de transform:scale(1.1);) é a propriedade que será transicionada */
+
+.card {
+  animation: appear 3s;
+}
+
+@keyframes appear {
+  0% {
+    transform:translateY(-50px);
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+/* @keyframes, usado para fazer animações
+   apper, nome da animação;
+   dentro dos {} estarão os pontos que serão animados;
+   nesse exemplo, começa com opacidade 0 e termina com opacidade 1;
+*/
+
+@media (min-width: 700px) {
+  #cards {
+    max-width: 670px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+/* se a largura mínima da minha tela for de 700px pra cima, as regras que estão dentro dos colchetes devem ser aplicadas */
+
+/* o flex coloca um conteúdo ao lado do outro, quando chegar na
+largura máxima de 670px, o próximo conteúdo vai para baixo */
